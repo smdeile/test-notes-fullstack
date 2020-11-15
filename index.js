@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const exphbs=require('express-handlebars');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const noteRouts = require('./routes/notes');
-
+require("dotenv").config();
 
 const PORT = process.env.PORT || 3000;
 const staticDir = path.join(__dirname, 'public');
@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }))
 
 async function start () {
     
-    try { await mongoose.connect('mongodb+srv://admin:admin@cluster0.tmtnh.mongodb.net/notes', {
+    try { await mongoose.connect(process.env.MONGODB_URL, {
         useNewUrlParser: true,
         useFindAndModify: false
     })

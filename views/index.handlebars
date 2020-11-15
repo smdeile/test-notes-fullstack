@@ -1,12 +1,12 @@
-<h2>Hello</h2>
+<h2>Hello, here are tou notes: </h2>
 
 {{#if notes.length}}
-<ul>
+<ul class='list'>
     {{#each notes}}
-    <li>
+    <li class='list__item'>
         <form action="/delete" method="POST">
-            <h3>{{title}}</h3>
-            <p>{{note}}</p>
+            <h3>Title: {{title}}</h3>
+            <p>Note: {{note}}</p>
             <input type="hidden" value={{_id}} name='id'>
             <button type="submit">Delete note</button>
         </form>

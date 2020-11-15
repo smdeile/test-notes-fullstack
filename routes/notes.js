@@ -21,16 +21,19 @@ const upload = multer({ storage: storage, limits: { fileSize: 2000000 }});
 
 router.get('/', async (req, res)=>{
    const notes = await Note.find({});
-  
-   const isPaginate= (notes)=> {if (notes.length % 5 > 1) {return true}};
-   const firstFive=(notes)=> {if(notes.length !== 0 && !isPaginate(notes)) { return notes.slice(0, 5)}};
+   const isPaginate= (notes)=> {if (notes.length >5 ) {return true} else {
+       return false
+   }};
+   const firstFive=(notes)=> {if(notes.length !== 0 && notes.length>=5) {
+        return notes.slice(0, 5)}
+    else return notes};
 firstFive(notes)
    res.render('index',
     {
         name: 'notes',
         isIndex: true,
         notes: firstFive(notes),
-        isPaginate: !isPaginate(notes)
+        isPaginate: isPaginate(notes)
     });
 });
 router.get('/show-all', async (req, res)=>{
