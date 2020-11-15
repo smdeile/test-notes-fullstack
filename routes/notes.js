@@ -7,6 +7,11 @@ const fs = require('fs');
 
 const imageDir=path.join(__dirname, "..", "public/avatar_temp");
 
+if (!fs.existsSync(imageDir)){
+    fs.mkdirSync(imageDir);
+}
+
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, imageDir)
