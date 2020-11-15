@@ -1,0 +1,19 @@
+<h2>Hello</h2>
+
+{{#if notes.length}}
+<ul>
+    {{#each notes}}
+    <li>
+        <form action="/delete" method="POST">
+            <h3>{{title}}</h3>
+            <p>{{note}}</p>
+            <input type="hidden" value={{_id}} name='id'>
+            <button type="submit">Delete note</button>
+        </form>
+    </li>
+    {{/each}}
+</ul>
+{{#if isPaginate}}<form action="/show-all" method="GET"><button type="submit">Next page</button></form> {{/if}}
+{{else}}
+<p>There are no notes to show...</p>
+{{/if}}
